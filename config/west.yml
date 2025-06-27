@@ -90,16 +90,5 @@ manifest:
       revision: main # this will eventually become main
 
 
-          # Temporarily overload Zephyr until
-    # https://github.com/zmkfirmware/zephyr/pull/40 is merged.
-    - name: zephyr
-      revision: v3.5.0+zmk-fixes
-      clone-depth: 1
-      import:
-        # Only enable most commonly used boards. For less common hardware one
-        # may need to enable additional modules.
-        name-allowlist:
-          - do52pro_tp
-
   self:
     path: config
