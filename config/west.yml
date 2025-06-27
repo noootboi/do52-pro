@@ -1,4 +1,7 @@
 manifest:
+  defaults:
+    remote: urob
+    revision: v0.2 # Pin everything to v0.2
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
@@ -61,6 +64,16 @@ manifest:
     # Additional zmk modules
     #
 
+        # ZMK modules
+    - name: zmk-adaptive-key
+      path: modules/zmk/adaptive-key
+    - name: zmk-auto-layer
+      path: modules/zmk/auto-layer
+    - name: zmk-leader-key
+      path: modules/zmk/leader-key
+    - name: zmk-tri-state
+      path: modules/zmk/tri-state
+
     # Module for PS/2 mouse & TP driver
     - name: kb_zmk_ps2_mouse_trackpoint_driver
       remote: infused-kim
@@ -76,11 +89,17 @@ manifest:
       remote: urob
       revision: main # this will eventually become main
 
-    # Tri-state behavior to make cmd+tab switching key
-    # Used to be a key feature in urob's fork
-    - name: zmk-tri-state
-      remote: dhruvinsh
-      revision: main
+
+          # Temporarily overload Zephyr until
+    # https://github.com/zmkfirmware/zephyr/pull/40 is merged.
+    - name: zephyr
+      revision: v3.5.0+zmk-fixes
+      clone-depth: 1
+      import:
+        # Only enable most commonly used boards. For less common hardware one
+        # may need to enable additional modules.
+        name-allowlist:
+          - do52pro_tp
 
   self:
     path: config
