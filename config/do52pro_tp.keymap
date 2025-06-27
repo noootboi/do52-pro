@@ -44,7 +44,7 @@
 &kp CAPSLOCK  &kp C               &kp I              &kp E             &kp A            &kp COMMA      &kp K      &kp H     &kp T       &kp N    &kp S          &kp ENTER
 &kp LSHFT     &kp FSLH            &kp EQUAL          &kp SQT           &kp DOT          &kp MINUS      &kp J      &kp M     &kp G       &kp W    &kp V          &kp RSHFT
 &kp LCTRL     &kp LEFT_ALT                                             &kp R            &kp SPACE      &kp BSPC   &kp LSHFT                      &kp RIGHT_ALT  &kp RCTRL
-              &tog lower_layer  &kp C_VOLUME_DOWN  &kp C_PLAY_PAUSE  &kp C_VOLUME_UP  &kp LA(RIGHT)  &kp LEFT   &kp DOWN  &kp C_MUTE  &kp UP   &tog upper_layer
+              &mo 1  &kp C_VOLUME_DOWN  &kp C_PLAY_PAUSE  &kp C_VOLUME_UP  &kp LA(RIGHT)  &kp LEFT   &kp DOWN  &kp C_MUTE  &kp UP   &mo 2
             >;
         };
 
