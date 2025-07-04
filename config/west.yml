@@ -1,7 +1,4 @@
 manifest:
-  defaults:
-    remote: urob
-    revision: v0.2 # Pin everything to v0.2
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
@@ -25,10 +22,10 @@ manifest:
 
     # Standard, stable zmk repo without mouse PR.
     # Not compatible with the PS/2 mouse & TP driver module.
-    # - name: zmk
-    #   remote: zmkfirmware
-    #   revision: main
-    #   import: app/west.yml
+    - name: zmk
+      remote: zmkfirmware
+      revision: main
+      import: app/west.yml
 
     # infused-kim's zmk fork with mouse PR, which might be a bit outdated, but
     # is known to be compatible with the PS/2 mouse & TP driver module.
@@ -55,24 +52,14 @@ manifest:
     # infused-kim's zmk fork with mouse PR AND urob's improvements, which
     # might be out-dated, but is known to be compatible with PS/2 mouse & TP
     # driver module.
-    - name: zmk
-      remote: infused-kim
-      revision: pr-testing/mouse_ps2_module_base_urob
-      import: app/west.yml
+    # - name: zmk
+    #   remote: infused-kim
+    #   revision: pr-testing/mouse_ps2_module_base_urob
+    #   import: app/west.yml
 
     #
     # Additional zmk modules
     #
-
-        # ZMK modules
-    - name: zmk-adaptive-key
-      path: modules/zmk/adaptive-key
-    - name: zmk-auto-layer
-      path: modules/zmk/auto-layer
-    - name: zmk-leader-key
-      path: modules/zmk/leader-key
-    - name: zmk-tri-state
-      path: modules/zmk/tri-state
 
     # Module for PS/2 mouse & TP driver
     - name: kb_zmk_ps2_mouse_trackpoint_driver
@@ -89,21 +76,15 @@ manifest:
       remote: urob
       revision: main # this will eventually become main
 
-    # Temporarily overload Zephyr until
-    # https://github.com/zmkfirmware/zephyr/pull/40 is merged.
-    - name: zephyr
-      revision: v3.5.0+zmk-fixes
-      clone-depth: 1
-      import:
-        # Only enable most commonly used boards. For less common hardware one
-        # may need to enable additional modules.
-        name-allowlist:
-          - cmsis
-          - hal_nordic
-          - hal_rpi_pico
-          - hal_stm32
-          - lvgl
-          - tinycrypt
-          
+    # Tri-state behavior to make cmd+tab switching key
+    # Used to be a key feature in urob's fork
+    - name: zmk-tri-state
+      remote: dhruvinsh
+      revision: main
+
+    - name: zmk-adaptive-key
+      remote: urob
+      revision: main # set to same as ZMK version above
+
   self:
     path: config
