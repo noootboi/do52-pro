@@ -82,9 +82,7 @@ manifest:
       remote: dhruvinsh
       revision: main
 
-    - name: zmk-adaptive-key
-      remote: urob
-      revision: main # set to same as ZMK version above
+
 
 
   self:
