@@ -506,49 +506,8 @@
 #endif
 
 
-/ {
-    mouse_ps2: mouse_ps2 {
-        compatible = "zmk,input-mouse-ps2";
-        
-#ifdef MOUSE_PS2_DRIVER_UART
-	    ps2-device = <&uart_ps2>;
-#else
-	    ps2-device = <&gpio_ps2>;
-#endif
 
-#ifdef MOUSE_PS2_PIN_RST_PRO_MICRO
-        rst-gpios = MOUSE_PS2_PIN_RST_PRO_MICRO;
-#endif
-    };
-};
-#include <input/processors.dtsi>
-#include <dt-bindings/zmk/input_transform.h>
-#include <zephyr/dt-bindings/input/input-event-codes.h>
 
-/{
-    trackpoint_listener: trackpoint_listener {
-        compatible = "zmk,input-listener";
-        device = <&mouse_ps2>;
-        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>,<&zip_xy_scaler 0 1>;
-        scroller {
-            layers = <10>;
-            //process-next;
-            input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>,<&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>,<&zip_xy_scaler 1 8>,<&zip_xy_to_scroll_mapper>;
-        };
-        mouse {
-            layers = <9>;
-            input-processors = 
-                <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>
-                //, <&zip_temp_layer 9 500>
-                ;
-        };
-        
-    };
-
-    
-};
-
-/*
 / {
     mouse_ps2: mouse_ps2 {
 		status = "disabled";
@@ -576,4 +535,3 @@
 		// zmk-config/config/includes/mouse_tp.dtsi
     };
 };
-*/
